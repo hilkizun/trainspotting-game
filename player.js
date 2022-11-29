@@ -90,4 +90,11 @@ class Player {
 		}
 	}
 
+	isColliding(obj) {
+		return this.x < obj.x + obj.width
+		 && this.x + this.width > obj.x
+		 && this.y < obj.y + obj.width
+		 && this.y + this.height > obj.y;
+	}
+
 }

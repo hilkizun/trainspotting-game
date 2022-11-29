@@ -15,6 +15,7 @@ class Game {
 		this.intervalId = setInterval(() => {
 			this.draw();
 			this.move();
+			this.checkCollisionPowerUp();
 		}, 1000 / 60);
 	}
 
@@ -53,6 +54,14 @@ class Game {
 		this.bg.onKeyEvent(event);
 		this.cokes.forEach(coke => coke.onKeyEvent(event));
 	}
+
+	checkCollisionPowerUp() {
+		const cokeColliding = this.cokes.find(coke => this.player.isColliding(coke));
+		if (cokeColliding) {
+			this.cokes.splice(this.cokes.indexOf(cokeColliding), 1);
+		}
+	}
+
 
 
 }
