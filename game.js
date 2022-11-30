@@ -4,18 +4,15 @@ class Game {
 		this.ctx = this.canvas.getContext("2d");
 		this.player = new Player(this.ctx, 200, 390);
 		this.bg = new Background(this.ctx);
-		this.cokes = [
+		this.powerUps = [
 			new Coke(this.ctx, 500, 350, 30),
 			new Coke(this.ctx, 800, 300, 30),
-		];
-		this.needles = [
 			new Needle(this.ctx, 600, 300, 30),
 			new Needle(this.ctx, 900, 350, 30),
-		];
-		this.anphes = [
 			new Anphe(this.ctx, 700, 350, 30),
 			new Anphe(this.ctx, 1000, 300, 30),
 		];
+		this.health = 0;
 	}
 
 	start() {
@@ -30,69 +27,60 @@ class Game {
 	draw() {
 		this.bg.draw();
 		this.player.draw();
-		this.cokes.forEach(coke => {
-			coke.draw()
+		this.powerUps.forEach(powerUp => {
+			powerUp.draw()
 		});
-		this.needles.forEach(needle => {
-			needle.draw()
-		});
-		this.anphes.forEach(anphe => {
-			anphe.draw()
-		});
+		this.drawHealth();
 	}
 
 	move() {
 		this.bg.move();
 		this.player.move();
-		this.cokes.forEach(coke => {
-			coke.move()
+		this.powerUps.forEach(powerUp => {
+			powerUp.move()
 		});
-		this.needles.forEach(needle => {
-			needle.move()
-		})
-		this.anphes.forEach(anphe => {
-			anphe.move()
-		})
 	}
-
-
 
 	onKeyDown(event) {
 		this.player.onKeyDown(event);
 		this.bg.onKeyEvent(event);
-		this.cokes.forEach(coke => coke.onKeyEvent(event));
-		this.needles.forEach(needle => needle.onKeyEvent(event));
-		this.anphes.forEach(anphe => anphe.onKeyEvent(event));
-
+		this.powerUps.forEach(powerUp => powerUp.onKeyEvent(event));
 	}
 
 	onKeyUp(event) {
 		this.player.onKeyUp(event);
 		this.bg.onKeyEvent(event);
-		this.cokes.forEach(coke => coke.onKeyEvent(event));
-		this.needles.forEach(needle => needle.onKeyEvent(event));
-		this.anphes.forEach(anphe => anphe.onKeyEvent(event));
+		this.powerUps.forEach(powerUp => powerUp.onKeyEvent(event));
 	}
 
 	checkCollisionPowerUp() {
-		const cokeColliding = this.cokes.find(coke => this.player.isColliding(coke));
-		if (cokeColliding) {
-			this.cokes.splice(this.cokes.indexOf(cokeColliding), 1);
+		const powerUpColliding = this.powerUps.find(powerUp => this.player.isColliding(powerUp));
+		if (powerUpColliding) {
+			console.log()
+			switch (powerUpColliding.constructor.name) {
+				case 'Coke':  
+					this.health = this.health + 10;
+				  break;
+				case 'Anphe':	
+					this.health = this.health + 5;
+					break;
+				case 'Needle':
+					this.health = this.health + 20;
+					break;
+				}
+			this.powerUps.splice(this.powerUps.indexOf(powerUpColliding), 1);
 		}
-
-		const needleColliding = this.needles.find(needle => this.player.isColliding(needle));
-		if (needleColliding) {
-			this.needles.splice(this.needles.indexOf(needleColliding), 1);
-		}
-
-		const anpheColliding = this.anphes.find(anphe => this.player.isColliding(anphe));
-		if (anpheColliding) {
-			this.anphes.splice(this.anphes.indexOf(anpheColliding), 1);
-		}
+		
 	}
 
 	clear() {
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+	}
+
+	drawHealth() {
+		this.ctx.fillStyle = '#fff';
+		this.ctx.font = '24px Arial';
+		this.ctx.fillText("Health: " + this.health, 10, 30);
 	}
 
 
