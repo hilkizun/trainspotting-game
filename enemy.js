@@ -28,6 +28,7 @@ class Enemy {
         this.isColliding = false;
         this.isPunching = false;
 		this.health = 30;
+		this.damage = 5;
 
 		this.tick = 0;
 	}
@@ -62,7 +63,7 @@ class Enemy {
 			this.direction.left = false;
             this.direction.right = true;
 		}
-        if (this.x >= this.ctx.canvas.width) {
+        if (this.x >= this.ctx.canvas.width - this.width/2) {
 			this.direction.left = true;
             this.direction.right = false;
 		}
@@ -72,10 +73,10 @@ class Enemy {
 			if (this.direction.left){
                 this.yFrame = 0};
                 
-//// VELOCIDAD DEL ENEMIGO ERRÓNEA CUANDO REBOTA               
+           
             if (this.direction.right){
                 this.yFrame = 4;
-                this.x += -2 * this.speed - this.bg.speed;
+                this.x += -2 * this.speed;
             };
 
 			if (this.tick % 10 === 0) {

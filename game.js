@@ -39,8 +39,37 @@ class Game {
 			new Platform(this.ctx, 1575, 279, 211, 0),
 			new Platform(this.ctx, 1606, 372, 150, 0),
 			new Platform(this.ctx, 2058, 196, 195, 0),
-			new Platform(this.ctx, 2489, 226, 195, 0),
-			new Platform(this.ctx, 2550, 356, 74, 0),		
+			new Platform(this.ctx, 2594, 281, 195, 0),
+			new Platform(this.ctx, 2620, 373, 145, 0),	
+            new Platform(this.ctx, 2930, 360, 250, 0),
+            new Platform(this.ctx, 3317, 198, 180, 0),
+            new Platform(this.ctx, 3617, 282, 200, 0),
+            new Platform(this.ctx, 3645, 373, 146, 0),
+            new Platform(this.ctx, 3940, 196, 180, 0),
+            new Platform(this.ctx, 4279, 198, 180, 0),
+            new Platform(this.ctx, 4764, 198, 180, 0),
+            new Platform(this.ctx, 5162, 230, 185, 0),
+            new Platform(this.ctx, 5216, 367, 83, 0),
+            new Platform(this.ctx, 5425, 280, 211, 0),
+			new Platform(this.ctx, 5455, 372, 150, 0),
+			new Platform(this.ctx, 5802, 360, 264, 0),
+			new Platform(this.ctx, 6011, 197, 195, 0),
+			new Platform(this.ctx, 6335, 197, 195, 0),
+			new Platform(this.ctx, 6671, 196, 195, 0),
+			new Platform(this.ctx, 6975, 279, 211, 0),
+			new Platform(this.ctx, 7006, 372, 150, 0),
+			new Platform(this.ctx, 7458, 196, 195, 0),
+			new Platform(this.ctx, 7994, 281, 195, 0),
+			new Platform(this.ctx, 8020, 373, 145, 0),	
+            new Platform(this.ctx, 8330, 360, 250, 0),
+            new Platform(this.ctx, 8717, 198, 180, 0),
+            new Platform(this.ctx, 9017, 282, 200, 0),
+            new Platform(this.ctx, 9045, 373, 146, 0),
+            new Platform(this.ctx, 9340, 196, 180, 0),
+            new Platform(this.ctx, 9679, 198, 180, 0),
+            new Platform(this.ctx, 10164, 198, 180, 0),
+            new Platform(this.ctx, 5162, 230, 185, 0),
+            new Platform(this.ctx, 5216, 367, 83, 0),
 		];
         this.health = 0;
     }
@@ -146,12 +175,18 @@ class Game {
         }
 /// DAÑO AL PLAYER
         if (enemyColliding && enemyColliding.isColliding && (enemyColliding.yFrame === 1 ||  enemyColliding.yFrame === 5 ) && enemyColliding.xFrame === 1) {
-            this.health = this.health - 1/4;
+            this.health = this.health - enemyColliding.damage / 10;
+            
             if (this.player.direction.right){
-                this.player.yFrame = 6;}
-                else {this.player.yFrame = 7}
+                this.player.yFrame = 6;
+                this.player.xFrame = 0;
+            }
+                else {this.player.yFrame = 7
+                    this.player.xFrame = 2;
+                }
             
             console.log('daño player')
+            console.log(this.health)
         }
 /// DAÑO AL ENEMIGO
         if (enemyColliding && enemyColliding.isColliding && this.player.isPunch && this.player.xFrame >= 1) {
@@ -164,17 +199,23 @@ class Game {
             console.log('daño enemigo')
             console.log(enemyColliding.health)
             if (enemyColliding.health <= 0){
+                console.log('entro')
                 enemyColliding.timeDeath = setTimeout(() => {
                     enemyColliding.isPunching = false;
-                    if (enemyColliding.tick % 5 === 0){
+                    if (enemyColliding.tick % 20 === 0){
                         enemyColliding.xFrame +=1;
                         if (enemyColliding.direction.left){
                             enemyColliding.yFrame = 2;
+                            if (this.xFrame > 1) {
+                                this.xFrame = 0;}
                         }
-                        else {enemyColliding.yFrame = 6;}
+                        else {enemyColliding.yFrame = 6;
+                            if (this.xFrame > 1) {
+                                this.xFrame = 0;}
+                        }
                     };
                    
-////// FALLO NO CONSIGO QUE PARAPEDEE AL MORIR                    
+////// FALLO NO CONSIGO QUE PARPADEE AL MORIR                    
                     clearTimeout(enemyColliding.timeDeath)
                     enemyColliding.timeDeath = null
                     
@@ -194,7 +235,6 @@ class Game {
 				this.player.y + this.player.height > plat.y &&
 				this.player.prevY + this.player.height <= plat.y
 			) {
-				this.player.vy = 0;
 				this.player.y = this.player.prevY;
 				this.player.isPlatform = true;
 			}

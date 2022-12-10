@@ -1,9 +1,15 @@
 const game = new Game('canvas-game');
-const startBtn = document.getElementById('start-btn');
-
+let startBtn = document.getElementById('start-btn');
 startBtn.addEventListener('click', () => {
 	game.start();
+	setPauseBtn();
 });
+
+function setPauseBtn() {
+	startBtn.innerHTML = 'Pause';
+	startBtn.setAttribute('class', 'pause-btn');
+	startBtn.setAttribute('id', 'pause-btn');
+  }
 
 document.addEventListener('keydown', function(event) {
 	game.onKeyDown(event);

@@ -3,7 +3,7 @@ class Background {
 		this.ctx = ctx;
 		this.x = 0;
 		this.y = 0;
-		this.width = this.ctx.canvas.width * 3;
+		this.width = this.ctx.canvas.width * 6;
 		this.height = this.ctx.canvas.height;
 		this.img = new Image();
 		this.img.src = "images/complete-bg.png";
@@ -21,8 +21,8 @@ class Background {
 	draw() {
 		if (this.isReady) {
 			this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-			this.ctx.drawImage(this.img, this.x + (this.ctx.canvas.width * 3), this.y, this.width, this.height);
-			this.ctx.drawImage(this.img, this.x - (this.ctx.canvas.width * 3), this.y, this.width, this.height);
+			this.ctx.drawImage(this.img, this.x + (this.ctx.canvas.width * 6), this.y, this.width, this.height);
+			this.ctx.drawImage(this.img, this.x - (this.ctx.canvas.width * 6), this.y, this.width, this.height);
 		}
 	}
 
@@ -37,7 +37,7 @@ class Background {
 			this.speed = 0;
 		}
 
-		if (this.x + (this.ctx.canvas.width * 3) <= 0 || this.x >= this.ctx.canvas.width * 3) {
+		if (this.x + (this.ctx.canvas.width * 6) <= 0 || this.x >= this.ctx.canvas.width * 6) {
 			this.x = 0;
 		}
 	}

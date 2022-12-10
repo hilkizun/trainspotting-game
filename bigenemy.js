@@ -29,6 +29,7 @@ class Bigenemy {
         this.isColliding = false;
         this.isPunching = false;
 		this.health = 80;
+        this.damage = 10;
 
 		this.tick = 0;
 	}
@@ -63,7 +64,7 @@ class Bigenemy {
 			this.direction.left = false;
             this.direction.right = true;
 		}
-        if (this.x >= this.ctx.canvas.width) {
+        if (this.x >= this.ctx.canvas.width - this.width/2) {
 			this.direction.left = true;
             this.direction.right = false;
 		}
@@ -79,7 +80,7 @@ class Bigenemy {
                
             if (this.direction.right){
                 this.yFrame = 4;
-                this.x += -2 * this.speed - this.bg.speed;
+                this.x += -2 * this.speed;
             };
 
 			if (this.tick % 15 === 0) {
