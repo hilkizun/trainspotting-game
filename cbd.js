@@ -1,4 +1,4 @@
-class Coke {
+class Cbd {
 	constructor(ctx, x, y, width, height) {
 		this.ctx = ctx;
 		this.x = x;
@@ -6,7 +6,7 @@ class Coke {
 		this.width = 32;
 		this.height = 32;
 		this.img = new Image();
-		this.img.src = "images/coke.png";
+		this.img.src = "images/cbd.png";
 		this.isReady = false;
 		this.img.onload = () => {
 			this.isReady = true;
@@ -36,9 +36,9 @@ class Coke {
 		this.x += this.speed;
 
 		if (this.directions.left) {
-			this.speed = 5
+			this.speed = 4
 		} else if (this.directions.right) {
-			this.speed = -5
+			this.speed = -4
 		} else {
 			this.speed = 0;
 		}

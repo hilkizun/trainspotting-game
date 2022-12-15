@@ -29,6 +29,7 @@ class Enemy {
         this.isPunching = false;
 		this.health = 30;
 		this.damage = 5;
+		this.death = false;
 
 		this.tick = 0;
 	}

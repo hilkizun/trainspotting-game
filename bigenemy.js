@@ -30,6 +30,7 @@ class Bigenemy {
         this.isPunching = false;
 		this.health = 80;
         this.damage = 10;
+		this.death = false;
 
 		this.tick = 0;
 	}

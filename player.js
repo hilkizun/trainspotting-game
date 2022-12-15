@@ -2,7 +2,9 @@ class Player {
 	constructor(ctx, x, y) {
 		this.ctx = ctx;
 		this.x = x;
+		this.prevX = x;
 		this.y = y;
+		this.prevY = y;
 		this.width = 50;
 		this.height = 70;
 		this.horizontalFrames = 4;
@@ -10,7 +12,7 @@ class Player {
 		this.xFrame = 0;
 		this.yFrame = 1;
 		this.timeOutPunch = null;
-		this.prevY = y;
+		
 
 		this.speed = 0;
 		this.gravity = 0.35;
@@ -29,6 +31,8 @@ class Player {
 			left: false,
 			right: true,
 		};
+		this.isDrunk = false;
+		this.isDeath = false;
 
 		this.tick = 0;
 	}
@@ -69,7 +73,7 @@ class Player {
 			this.isMoving = true;
 			this.direction.left = true;
 		}
-		if (event.keyCode === 16) {
+		if (event.keyCode === 32) {
 			this.isPunch = true;
 			this.direction.right = this.direction.right;
 			this.direction.left = this.direction.left;
@@ -94,7 +98,7 @@ class Player {
 				if (this.direction.right) {
 					this.yFrame = 1;
 		
-					if (this.tick % 10 === 0) {
+					if (this.tick % 15 === 0) {
 						this.xFrame += 1;
 		
 					   if (this.xFrame > 1) {
@@ -106,7 +110,7 @@ class Player {
 				 if (this.direction.left) {
 					this.yFrame = 3;
 		
-					if (this.tick % 10 === 0) {
+					if (this.tick % 15 === 0) {
 						this.xFrame += 1;
 		
 					if (this.xFrame > 1) {
@@ -158,7 +162,7 @@ class Player {
 				this.yFrame = 5;
 			}
 
-			if (this.tick % 15 === 0) {
+			if (this.tick % 10 === 0) {
 				this.xFrame += 1;
 				if (this.xFrame === 2) {
 					this.horizontalFrames = 2;
@@ -177,11 +181,23 @@ class Player {
 				
 				clearTimeout(this.timeOutPunch)
 				this.timeOutPunch = null
-			  }, 800)
-		  }
-
-		
+			  }, 450)
+		  }		
 		}
+
+		if (this.isDeath){
+			this.yFrame = 8;
+        	this.horizontalFrames = 2;
+			this.width = 100;
+			this.isMoving = true;
+			
+		}
+
+		if (this.isDrunk){
+			
+		}
+
+
 	}
 
 

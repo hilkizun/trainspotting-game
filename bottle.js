@@ -1,4 +1,4 @@
-class Needle {
+class Bottle {
 	constructor(ctx, x, y, width, height) {
 		this.ctx = ctx;
 		this.x = x;
@@ -6,7 +6,7 @@ class Needle {
 		this.width = 32;
 		this.height = 32;
 		this.img = new Image();
-		this.img.src = "images/needle.png";
+		this.img.src = "images/bottle.png";
 		this.isReady = false;
 		this.img.onload = () => {
 			this.isReady = true;
@@ -36,9 +36,9 @@ class Needle {
 		this.x += this.speed;
 
 		if (this.directions.left) {
-			this.speed = 5
+			this.speed = 4
 		} else if (this.directions.right) {
-			this.speed = -5
+			this.speed = -4
 		} else {
 			this.speed = 0;
 		}

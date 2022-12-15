@@ -30,9 +30,9 @@ class Background {
 		this.x += this.speed;
 
 		if (this.directions.left) {
-			this.speed = 5
+			this.speed = 4
 		} else if (this.directions.right) {
-			this.speed = -5
+			this.speed = -4
 		} else {
 			this.speed = 0;
 		}
