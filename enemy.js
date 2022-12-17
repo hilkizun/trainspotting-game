@@ -10,7 +10,7 @@ class Enemy {
 		this.xFrame = 0
 		this.yFrame = 0
 
-		this.speed = -2;
+		this.speed = -3.5;
 		this.bg = bg;
 		this.img = new Image();
 		this.img.src = "images/enemy.png";
@@ -27,7 +27,7 @@ class Enemy {
 
         this.isColliding = false;
         this.isPunching = false;
-		this.health = 30;
+		this.health = 25;
 		this.damage = 5;
 		this.death = false;
 

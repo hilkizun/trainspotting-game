@@ -1,5 +1,5 @@
 class Bottle {
-	constructor(ctx, x, y, width, height) {
+	constructor(ctx, x, y) {
 		this.ctx = ctx;
 		this.x = x;
 		this.y = y;
@@ -36,9 +36,9 @@ class Bottle {
 		this.x += this.speed;
 
 		if (this.directions.left) {
-			this.speed = 4
+			this.speed = 4;
 		} else if (this.directions.right) {
-			this.speed = -4
+			this.speed = -4;
 		} else {
 			this.speed = 0;
 		}

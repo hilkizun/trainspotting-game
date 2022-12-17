@@ -1,5 +1,5 @@
 class Cbd {
-	constructor(ctx, x, y, width, height) {
+	constructor(ctx, x, y) {
 		this.ctx = ctx;
 		this.x = x;
 		this.y = y;

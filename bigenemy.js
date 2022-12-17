@@ -11,7 +11,7 @@ class Bigenemy {
 		this.yFrame = 0
         this.prevX = x;
 
-		this.speed = -2;
+		this.speed = -4;
 		this.bg = bg;
 		this.img = new Image();
 		this.img.src = "images/big-enemy.png";
@@ -28,7 +28,7 @@ class Bigenemy {
 
         this.isColliding = false;
         this.isPunching = false;
-		this.health = 80;
+		this.health = 40;
         this.damage = 10;
 		this.death = false;
 

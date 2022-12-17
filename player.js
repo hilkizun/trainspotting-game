@@ -8,7 +8,7 @@ class Player {
 		this.width = 50;
 		this.height = 70;
 		this.horizontalFrames = 4;
-		this.verticalFrames = 9;
+		this.verticalFrames = 11;
 		this.xFrame = 0;
 		this.yFrame = 1;
 		this.timeOutPunch = null;
@@ -17,7 +17,7 @@ class Player {
 		this.speed = 0;
 		this.gravity = 0.35;
 		this.img = new Image();
-		this.img.src = "images/player-sprite-test.png";
+		this.img.src = "images/player-sprite.png";
 		this.isReady = false;
 		this.img.onload = () => {
 			this.isReady = true;
@@ -33,12 +33,10 @@ class Player {
 		};
 		this.isDrunk = false;
 		this.isDeath = false;
+		this.isFine = false;
 
 		this.tick = 0;
 	}
-
-
-	/////// CREAR UN ESTADO FALLING QUE IMPIDA
 
 	draw() {
 		if (this.isReady) {
@@ -181,7 +179,7 @@ class Player {
 				
 				clearTimeout(this.timeOutPunch)
 				this.timeOutPunch = null
-			  }, 450)
+			  }, 350)
 		  }		
 		}
 
@@ -194,8 +192,16 @@ class Player {
 		}
 
 		if (this.isDrunk){
-			
+			this.gravity= 5;
+			if (this.direction.right){
+				this.yFrame = 9;
+			}
+			if (this.direction.left){
+				this.yFrame = 10;
+			}
 		}
+
+
 
 
 	}

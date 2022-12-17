@@ -1,17 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,700|Holtwood+One+SC');
+
 html, body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Holtwood One SC';
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   align-items: center;
-  background-image: url('');;
 }
 
 #canvas-game {
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+canvas {
+    border: none;
+	background-image: url('./images/bkg-image.png');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .start-btn {
+	font-family: 'Holtwood One SC';
 	display:flex;
 	align-items: center;
 	justify-content: center;
@@ -23,7 +33,7 @@ html, body {
 	border-radius: 8px;
 	outline: none;
 	color: #fff;
-	background-color: #3e0707;
+	background-color: rgb(15, 72, 15);
 }
 
 .pause-btn {
@@ -40,3 +50,4 @@ html, body {
 	color: #fff;
 	background-color: #1614a3;
 }
+

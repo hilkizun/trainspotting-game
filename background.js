@@ -12,10 +12,12 @@ class Background {
 			this.isReady = true;
 		};
 		this.speed = 0;
+		this.isSlow = false;
 		this.directions = {
 			left: false,
 			right: false,
 		};
+		
 	}
 
 	draw() {
@@ -28,11 +30,16 @@ class Background {
 
 	move() {
 		this.x += this.speed;
+		
 
-		if (this.directions.left) {
+		if (this.directions.left && !this.isSlow) {
 			this.speed = 4
-		} else if (this.directions.right) {
+		} else if (this.directions.right && !this.isSlow) {
 			this.speed = -4
+		} else if (this.directions.right && this.isSlow) {
+			this.speed = -2
+		} else if (this.directions.left && this.isSlow) {
+			this.speed = -2
 		} else {
 			this.speed = 0;
 		}
